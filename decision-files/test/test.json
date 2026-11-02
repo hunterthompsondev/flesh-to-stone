@@ -1,0 +1,133 @@
+{
+    "room": "test",
+    "decisions": [
+        {
+            "id": "test.start",
+            "text": "You wake up in a dark cell. There is a cot, a rusty lock on the door, and a faint light under it. What will you do?",
+            "choices": [
+                {
+                    "text": "Search the cot",
+                    "required": ["!searched_cot"],
+                    "flags": ["hairpin", "searched_cot"],
+                    "next": "test.found_hairpin"
+                },
+                {
+                    "text": "Inspect the lock",
+                    "required": [],
+                    "flags": [],
+                    "next": "test.inspect_lock"
+                },
+                {
+                    "text": "Pick the lock",
+                    "post-text": "You work the hairpin into the lock and it clicks open.",
+                    "required": ["hairpin"],
+                    "flags": ["-hairpin", "door_open"],
+                    "next": "test.hallway"
+                },
+                {
+                    "text": "Kick the door down",
+                    "post-text": "The noise echoes through the prison. Guards burst in and drag you back.",
+                    "required": [],
+                    "flags": ["lose"],
+                    "next": null
+                }
+            ]
+        },
+        {
+            "id": "test.found_hairpin",
+            "text": "You find a hairpin tucked into the stuffing of the cot.",
+            "choices": [
+                {
+                    "text": "",
+                    "required": [],
+                    "flags": [],
+                    "next": "test.start"
+                }
+            ]
+        },
+        {
+            "id": "test.inspect_lock",
+            "text": "The lock looks rusty. Maybe you could pick it with something thin.",
+            "choices": [
+                {
+                    "text": "",
+                    "required": [],
+                    "flags": [],
+                    "next": "test.start"
+                }
+            ]
+        },
+        {
+            "id": "test.hallway",
+            "text": "You slip into a torch-lit hallway. A guard dozes in a chair, a key ring hanging from his belt. A heavy door stands at the far end.",
+            "choices": [
+                {
+                    "text": "Take the key ring from the guard's belt",
+                    "post-text": "Slowly, carefully, you lift the key ring free.",
+                    "required": ["!key"],
+                    "flags": ["key"],
+                    "next": "test.hallway"
+                },
+                {
+                    "text": "Sneak past the guard to the far door",
+                    "required": [],
+                    "flags": [],
+                    "next": "test.sneak_result"
+                },
+                {
+                    "text": "Wake the guard and ask for help",
+                    "post-text": "The guard wakes up, confused, then furious. Back to the cell you go.",
+                    "required": [],
+                    "flags": ["lose"],
+                    "next": null
+                }
+            ]
+        },
+        {
+            "id": "test.sneak_result",
+            "text": "You creep across the hallway.",
+            "choices": [
+                {
+                    "text": "Keep moving",
+                    "post-text": "You tiptoe past the guard empty-handed. He snores on.",
+                    "required": ["!key"],
+                    "flags": [],
+                    "next": "test.exit_door"
+                },
+                {
+                    "text": "Keep moving",
+                    "post-text": "The key ring jingles softly. The guard stirs, but doesn't wake.",
+                    "required": ["key"],
+                    "flags": [],
+                    "next": "test.exit_door"
+                }
+            ]
+        },
+        {
+            "id": "test.exit_door",
+            "text": "You reach the heavy iron door. Cold night air seeps through the keyhole.",
+            "choices": [
+                {
+                    "text": "Unlock the door with the key ring",
+                    "post-text": "The lock turns. You step out into the night, free.",
+                    "required": ["key"],
+                    "flags": ["win"],
+                    "next": null
+                },
+                {
+                    "text": "Try the handle",
+                    "post-text": "It's locked. You rattle it, and the guard behind you wakes up.",
+                    "required": ["!key"],
+                    "flags": ["lose"],
+                    "next": null
+                },
+                {
+                    "text": "Go back to the hallway",
+                    "required": [],
+                    "flags": [],
+                    "next": "test.hallway"
+                }
+            ]
+        }
+    ]
+}
