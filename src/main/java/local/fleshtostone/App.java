@@ -10,19 +10,22 @@ public class App {
             return;
         }
 
-        DecisionRepository decisionRepo = new DecisionRepository();
+        DecisionRepository repo = new DecisionRepository();
+        OutputManager output = new OutputManager();
+        GameState state = new GameState();
+
+        DecisionRunner runner = new DecisionRunner(repo, output, state);
 
         // Override for ad hoc testing
         // decisionRepo.loadDirectory(args[0]);
-        decisionRepo.loadDirectory("decision-files/test/");
+        repo.loadDirectory("decision-files/test/");
+        runner.setCurrent("test.start");
+        runner.traverseDecesisions();
 
-        DecisionNode node = decisionRepo.resolveDecisionNode("test.exit_door");
-
-        OutputManager output = new OutputManager();
-
-        int decision = output.getDecision(node.text(),
-                node.choices().stream().map(n -> n.text()).collect(Collectors.toList()));
-        System.out.println("Decision: " + node.choices().get(decision).text());
+        if (state.hasFlag("win")) {
+            System.out.println("You win");
+        }
+        System.out.println("You lost");
     }
 
 }
