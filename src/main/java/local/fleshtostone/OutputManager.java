@@ -10,6 +10,10 @@ public class OutputManager {
         scanner = new Scanner(System.in);
     }
 
+    private void divider() {
+        System.out.println("\n----------------------------------------\n");
+    }
+
     public int getDecision(final String text, final List<String> choices) {
         System.out.println(text);
 
@@ -31,6 +35,8 @@ public class OutputManager {
             } catch (Exception e) {
             }
         }
+
+        divider();
 
         return input - 1;
     }
