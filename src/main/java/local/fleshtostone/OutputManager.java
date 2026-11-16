@@ -4,6 +4,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class OutputManager {
+    Scanner scanner;
+
+    public OutputManager() {
+        scanner = new Scanner(System.in);
+    }
+
     public int getDecision(final String text, final List<String> choices) {
         System.out.println(text);
 
@@ -13,8 +19,6 @@ public class OutputManager {
 
         String inputStr;
         int input = 1;
-
-        Scanner scanner = new Scanner(System.in);
 
         boolean valid = false;
         while (!valid) {
@@ -27,8 +31,6 @@ public class OutputManager {
             } catch (Exception e) {
             }
         }
-
-        scanner.close();
 
         return input - 1;
     }
