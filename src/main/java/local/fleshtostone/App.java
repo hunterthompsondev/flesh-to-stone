@@ -18,14 +18,15 @@ public class App {
 
         // Override for ad hoc testing
         // decisionRepo.loadDirectory(args[0]);
-        repo.loadDirectory("decision-files/test/");
-        runner.setCurrent("test.start");
+        repo.loadDirectory("decision-files/test1/");
+        runner.setCurrent("prison.start");
         runner.traverseDecesisions();
 
         if (state.hasFlag("win")) {
             System.out.println("You win");
+        } else {
+            System.out.println("You lost");
         }
-        System.out.println("You lost");
     }
 
 }
