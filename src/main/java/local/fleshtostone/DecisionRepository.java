@@ -31,7 +31,8 @@ public class DecisionRepository {
         List<Path> files;
 
         try (Stream<Path> stream = Files.list(dir)) {
-            files = stream.filter(Files::isRegularFile).toList();
+            files = stream.filter(Files::isRegularFile).filter(f -> f.getFileName().toString().endsWith(".json"))
+                    .toList();
             System.out.println("Found " + files.size() + " file(s)");
         } catch (IOException e) {
             return -1;
