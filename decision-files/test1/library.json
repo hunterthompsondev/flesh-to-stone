@@ -1,0 +1,129 @@
+{
+    "room": "library",
+    "decisions": [
+        {
+            "id": "library.start",
+            "text": "Dusty shelves tower over a quiet library. A large portrait hangs above a cold fireplace, and a writing desk sits under the window with a small drawer secured by a four-digit dial.",
+            "choices": [
+                {
+                    "text": "Read the books on the shelves",
+                    "required": [
+                        "!books_read"
+                    ],
+                    "flags": [
+                        "books_read"
+                    ],
+                    "next": "library.books"
+                },
+                {
+                    "text": "Examine the portrait",
+                    "required": [
+                        "!lever_found"
+                    ],
+                    "flags": [
+                        "lever_found"
+                    ],
+                    "next": "library.painting"
+                },
+                {
+                    "text": "Pull the lever behind the portrait",
+                    "required": [
+                        "lever_found",
+                        "!lever_pulled"
+                    ],
+                    "flags": [
+                        "lever_pulled",
+                        "crowbar"
+                    ],
+                    "next": "library.lever"
+                },
+                {
+                    "text": "Enter 4172 on the drawer dial",
+                    "required": [
+                        "code_known",
+                        "!map"
+                    ],
+                    "flags": [
+                        "map"
+                    ],
+                    "next": "library.drawer_open"
+                },
+                {
+                    "text": "Try to force the drawer",
+                    "required": [
+                        "!code_known",
+                        "!map"
+                    ],
+                    "flags": [],
+                    "next": "library.drawer_stuck"
+                },
+                {
+                    "text": "Return to the guardroom",
+                    "required": [],
+                    "flags": [],
+                    "next": "guardroom.start"
+                }
+            ]
+        },
+        {
+            "id": "library.books",
+            "text": "Most of the books are crumbling ledgers, but one is a warden's diary. It mentions an old escape tunnel beneath the cellar, hidden behind the barrels, and a map kept locked in a desk.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "library.start"
+                }
+            ]
+        },
+        {
+            "id": "library.painting",
+            "text": "The portrait's eyes follow you around the room. Behind the frame you spot a small iron lever.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "library.start"
+                }
+            ]
+        },
+        {
+            "id": "library.lever",
+            "text": "The lever clunks, and a panel in the fireplace slides open. Inside is a heavy iron crowbar. You take it.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "library.start"
+                }
+            ]
+        },
+        {
+            "id": "library.drawer_open",
+            "text": "The dial clicks into place and the drawer slides open. Inside is a map of the tunnel under the cellar. You tuck it into your shirt.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "library.start"
+                }
+            ]
+        },
+        {
+            "id": "library.drawer_stuck",
+            "text": "You tug and rattle the drawer, but it will not budge. You need the right code.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "library.start"
+                }
+            ]
+        }
+    ]
+}

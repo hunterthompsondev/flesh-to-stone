@@ -1,0 +1,191 @@
+{
+    "room": "cellar",
+    "decisions": [
+        {
+            "id": "cellar.start",
+            "text": "Stairs descend into total darkness. You cannot see the bottom.",
+            "choices": [
+                {
+                    "text": "Descend with the lantern",
+                    "required": [
+                        "lantern"
+                    ],
+                    "flags": [],
+                    "next": "cellar.lit"
+                },
+                {
+                    "text": "Descend in the dark",
+                    "required": [
+                        "!lantern"
+                    ],
+                    "flags": [
+                        "hurt"
+                    ],
+                    "next": "cellar.fall"
+                },
+                {
+                    "text": "Go back to the guardroom",
+                    "required": [],
+                    "flags": [],
+                    "next": "guardroom.start"
+                }
+            ]
+        },
+        {
+            "id": "cellar.fall",
+            "text": "You miss a step and tumble down the stairs, twisting your ankle badly. Hobbling, you manage to crawl back up to the guardroom.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "guardroom.start"
+                }
+            ]
+        },
+        {
+            "id": "cellar.lit",
+            "text": "Lantern light shows barrels, crates, a pile of old bones, and a coil of rope. A cold draft seeps from behind the barrels along the far wall.",
+            "choices": [
+                {
+                    "text": "Take the coil of rope",
+                    "required": [
+                        "!rope"
+                    ],
+                    "flags": [
+                        "rope"
+                    ],
+                    "next": "cellar.took_rope"
+                },
+                {
+                    "text": "Gather the old bones",
+                    "required": [
+                        "!bones"
+                    ],
+                    "flags": [
+                        "bones"
+                    ],
+                    "next": "cellar.took_bones"
+                },
+                {
+                    "text": "Try to push the barrels aside",
+                    "required": [
+                        "!crowbar",
+                        "!barrels_moved"
+                    ],
+                    "flags": [],
+                    "next": "cellar.barrels_heavy"
+                },
+                {
+                    "text": "Pry the barrels aside with the crowbar",
+                    "required": [
+                        "crowbar",
+                        "!barrels_moved"
+                    ],
+                    "flags": [
+                        "barrels_moved"
+                    ],
+                    "next": "cellar.barrels_moved"
+                },
+                {
+                    "text": "Crawl into the tunnel",
+                    "required": [
+                        "barrels_moved",
+                        "!map"
+                    ],
+                    "flags": [],
+                    "next": "cellar.tunnel_lost"
+                },
+                {
+                    "text": "Crawl into the tunnel",
+                    "required": [
+                        "barrels_moved",
+                        "map"
+                    ],
+                    "flags": [],
+                    "next": "cellar.tunnel_escape"
+                },
+                {
+                    "text": "Climb back upstairs",
+                    "required": [],
+                    "flags": [],
+                    "next": "guardroom.start"
+                }
+            ]
+        },
+        {
+            "id": "cellar.took_rope",
+            "text": "The rope is old but sturdy. You sling it over your shoulder.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "cellar.lit"
+                }
+            ]
+        },
+        {
+            "id": "cellar.took_bones",
+            "text": "You gather a handful of large, meaty bones. They are not much use to you, but a dog might love them.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "cellar.lit"
+                }
+            ]
+        },
+        {
+            "id": "cellar.barrels_heavy",
+            "text": "The barrels are full and far too heavy. You grunt and strain, but they will not move. You need leverage.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "cellar.lit"
+                }
+            ]
+        },
+        {
+            "id": "cellar.barrels_moved",
+            "text": "With the crowbar for leverage, the barrels groan aside to reveal a low, dark tunnel leading away.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "cellar.lit"
+                }
+            ]
+        },
+        {
+            "id": "cellar.tunnel_lost",
+            "text": "You crawl into the tunnel, but it splits and splits again. Without a map you soon lose your way and eventually stumble back into the cellar.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "cellar.lit"
+                }
+            ]
+        },
+        {
+            "id": "cellar.tunnel_escape",
+            "text": "Guided by the warden's map, you crawl through the tunnel, taking each turn without hesitation. You emerge in a quiet field far beyond the prison walls. Nobody even knows you are gone. YOU WIN: The Quiet Escape.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [
+                        "win"
+                    ],
+                    "next": null
+                }
+            ]
+        }
+    ]
+}

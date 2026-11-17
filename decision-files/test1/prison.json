@@ -1,0 +1,123 @@
+{
+    "room": "prison",
+    "decisions": [
+        {
+            "id": "prison.start",
+            "text": "You wake in a dark prison cell. There is a sagging cot, a loose stone in the wall, and a rusty lock on the door. What will you do?",
+            "choices": [
+                {
+                    "text": "Search the cot",
+                    "required": [
+                        "!searched_cot"
+                    ],
+                    "flags": [
+                        "hairpin",
+                        "searched_cot"
+                    ],
+                    "next": "prison.found_hairpin"
+                },
+                {
+                    "text": "Feel behind the loose stone",
+                    "required": [
+                        "!found_coin"
+                    ],
+                    "flags": [
+                        "coin",
+                        "found_coin"
+                    ],
+                    "next": "prison.found_coin"
+                },
+                {
+                    "text": "Inspect the lock",
+                    "required": [
+                        "!door_open"
+                    ],
+                    "flags": [],
+                    "next": "prison.inspect_lock"
+                },
+                {
+                    "text": "Pick the lock",
+                    "required": [
+                        "hairpin",
+                        "!door_open"
+                    ],
+                    "flags": [
+                        "-hairpin",
+                        "door_open"
+                    ],
+                    "next": "prison.lock_picked"
+                },
+                {
+                    "text": "Kick the door",
+                    "required": [
+                        "!door_open"
+                    ],
+                    "flags": [],
+                    "next": "prison.kick_door"
+                }
+            ]
+        },
+        {
+            "id": "prison.found_hairpin",
+            "text": "Deep in the stuffing of the cot you find a bent hairpin.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "prison.start"
+                }
+            ]
+        },
+        {
+            "id": "prison.found_coin",
+            "text": "Behind the loose stone is a hollow holding a single tarnished coin. You pocket it.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "prison.start"
+                }
+            ]
+        },
+        {
+            "id": "prison.inspect_lock",
+            "text": "The lock is old and rusty. Something thin and strong might be able to pick it.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "prison.start"
+                }
+            ]
+        },
+        {
+            "id": "prison.lock_picked",
+            "text": "You work the hairpin into the lock. After a tense minute it clicks, and the door swings open.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "guardroom.start"
+                }
+            ]
+        },
+        {
+            "id": "prison.kick_door",
+            "text": "You kick the door as hard as you can. The racket echoes through the whole prison, and a squad of guards drags you back to your cell for good. GAME OVER.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [
+                        "lose"
+                    ],
+                    "next": null
+                }
+            ]
+        }
+    ]
+}

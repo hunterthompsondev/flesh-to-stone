@@ -1,0 +1,149 @@
+{
+    "room": "courtyard",
+    "decisions": [
+        {
+            "id": "courtyard.start",
+            "text": "Moonlight spills across the prison courtyard. A huge guard dog growls beside the chained main gate. The outer wall is tall, but not impossibly so.",
+            "choices": [
+                {
+                    "text": "Throw the bones to the dog",
+                    "required": [
+                        "bones",
+                        "!dog_fed"
+                    ],
+                    "flags": [
+                        "-bones",
+                        "dog_fed"
+                    ],
+                    "next": "courtyard.dog_fed"
+                },
+                {
+                    "text": "Approach the gate",
+                    "required": [
+                        "dog_fed"
+                    ],
+                    "flags": [],
+                    "next": "courtyard.gate_escape"
+                },
+                {
+                    "text": "Approach the gate",
+                    "required": [
+                        "!dog_fed"
+                    ],
+                    "flags": [],
+                    "next": "courtyard.dog_attacks"
+                },
+                {
+                    "text": "Climb the wall using the rope",
+                    "required": [
+                        "rope",
+                        "!hurt"
+                    ],
+                    "flags": [],
+                    "next": "courtyard.wall_escape"
+                },
+                {
+                    "text": "Try to climb the wall using the rope",
+                    "required": [
+                        "rope",
+                        "hurt"
+                    ],
+                    "flags": [],
+                    "next": "courtyard.climb_fail"
+                },
+                {
+                    "text": "Inspect the wall",
+                    "required": [
+                        "!rope"
+                    ],
+                    "flags": [],
+                    "next": "courtyard.wall_too_high"
+                },
+                {
+                    "text": "Slip back inside",
+                    "required": [],
+                    "flags": [],
+                    "next": "guardroom.start"
+                }
+            ]
+        },
+        {
+            "id": "courtyard.dog_fed",
+            "text": "The dog sniffs the bones, then pounces on them. It is far too busy chewing to notice you.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "courtyard.start"
+                }
+            ]
+        },
+        {
+            "id": "courtyard.climb_fail",
+            "text": "You start up the wall, but your bad ankle gives out and you slide back to the ground. You will need another way out.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "courtyard.start"
+                }
+            ]
+        },
+        {
+            "id": "courtyard.wall_too_high",
+            "text": "The wall is too tall to climb with your bare hands. You need something to climb with.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "courtyard.start"
+                }
+            ]
+        },
+        {
+            "id": "courtyard.gate_escape",
+            "text": "While the dog gnaws happily, you try the keys on the padlock until one fits. The gate creaks open and you slip out into freedom. YOU WIN: The Front Door.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [
+                        "win"
+                    ],
+                    "next": null
+                }
+            ]
+        },
+        {
+            "id": "courtyard.wall_escape",
+            "text": "You hook the rope over the top of the wall and haul yourself up hand over hand. You drop down the other side and run. YOU WIN: The Long Climb.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [
+                        "win"
+                    ],
+                    "next": null
+                }
+            ]
+        },
+        {
+            "id": "courtyard.dog_attacks",
+            "text": "You step toward the gate. The dog lunges, and its barking wakes the entire prison. GAME OVER.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [
+                        "lose"
+                    ],
+                    "next": null
+                }
+            ]
+        }
+    ]
+}

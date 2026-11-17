@@ -1,0 +1,154 @@
+{
+    "room": "guardroom",
+    "decisions": [
+        {
+            "id": "guardroom.start",
+            "text": "You slip into a torch-lit guardroom. A guard dozes at a table with a key ring on his belt. A lantern hangs from a hook on the wall. An archway leads to a library, stairs lead down to a cellar, and a heavy iron door is set in the far wall.",
+            "choices": [
+                {
+                    "text": "Lift the key ring from the guard's belt",
+                    "required": [
+                        "!key"
+                    ],
+                    "flags": [
+                        "key"
+                    ],
+                    "next": "guardroom.took_key"
+                },
+                {
+                    "text": "Take the lantern from the wall hook",
+                    "required": [
+                        "!lantern"
+                    ],
+                    "flags": [
+                        "lantern"
+                    ],
+                    "next": "guardroom.took_lantern"
+                },
+                {
+                    "text": "Offer the guard your coin",
+                    "required": [
+                        "coin",
+                        "!guard_bribed"
+                    ],
+                    "flags": [
+                        "-coin",
+                        "guard_bribed",
+                        "code_known"
+                    ],
+                    "next": "guardroom.bribed"
+                },
+                {
+                    "text": "Shake the guard awake",
+                    "required": [
+                        "!guard_bribed"
+                    ],
+                    "flags": [],
+                    "next": "guardroom.guard_wakes"
+                },
+                {
+                    "text": "Walk through the archway to the library",
+                    "required": [],
+                    "flags": [],
+                    "next": "library.start"
+                },
+                {
+                    "text": "Go down the cellar stairs",
+                    "required": [],
+                    "flags": [],
+                    "next": "cellar.start"
+                },
+                {
+                    "text": "Unlock the iron door",
+                    "required": [
+                        "key"
+                    ],
+                    "flags": [],
+                    "next": "guardroom.unlocked"
+                },
+                {
+                    "text": "Try the iron door",
+                    "required": [
+                        "!key"
+                    ],
+                    "flags": [],
+                    "next": "guardroom.door_locked"
+                }
+            ]
+        },
+        {
+            "id": "guardroom.took_key",
+            "text": "Holding your breath, you slide the key ring free. The guard snores on.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "guardroom.start"
+                }
+            ]
+        },
+        {
+            "id": "guardroom.took_lantern",
+            "text": "You lift the lantern off its hook. It is full of oil and still warm.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "guardroom.start"
+                }
+            ]
+        },
+        {
+            "id": "guardroom.bribed",
+            "text": "You nudge the guard and press the coin into his hand. He wakes, squints, and pockets it. 'Never saw you,' he mutters. 'If you're hunting for the library desk, the drawer code is 4172.' Then he closes his eyes again.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "guardroom.start"
+                }
+            ]
+        },
+        {
+            "id": "guardroom.unlocked",
+            "text": "The key ring has dozens of keys, but the fourth one turns. The iron door groans open onto the night air.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "courtyard.start"
+                }
+            ]
+        },
+        {
+            "id": "guardroom.door_locked",
+            "text": "The iron door is locked tight. You will need a key.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [],
+                    "next": "guardroom.start"
+                }
+            ]
+        },
+        {
+            "id": "guardroom.guard_wakes",
+            "text": "You shake the guard by the shoulder. His eyes snap open, and so does his mouth, shouting for reinforcements. GAME OVER.",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "required": [],
+                    "flags": [
+                        "lose"
+                    ],
+                    "next": null
+                }
+            ]
+        }
+    ]
+}
