@@ -3,6 +3,7 @@ package local.fleshtostone;
 import local.fleshtostone.schema.*;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Stream;
 import java.nio.file.Path;
@@ -55,5 +56,21 @@ public class DecisionRepository {
 
     public DecisionNode resolveDecisionNode(String nodeId) {
         return decisions.get(nodeId);
+    }
+
+        public List<String> findBrokenLinks() {
+        List<String> broken = new ArrayList<>();
+
+        for (DecisionNode node : decisions.values()) {
+            for (DecisionChoice choice : node.choices()) {
+                String next = choice.next();
+
+                if (next != null && !decisions.containsKey(next)) {
+                    broken.add(node.id() + " -> " + next);
+                }
+            }
+        }
+
+        return broken;
     }
 }
