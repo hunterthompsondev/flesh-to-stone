@@ -1,0 +1,35 @@
+{
+    "room": "broken",
+    "decisions": [
+        {
+            "id": "broken.start",
+            "text": "A test room.",
+            "choices": [
+                {
+                    "text": "Go somewhere real",
+                    "required": [],
+                    "flags": [],
+                    "next": "broken.end"
+                },
+                {
+                    "text": "Go somewhere that doesn't exist",
+                    "required": [],
+                    "flags": [],
+                    "next": "broken.missing"
+                }
+            ]
+        },
+        {
+            "id": "broken.end",
+            "text": "The end.",
+            "choices": [
+                {
+                    "text": "Finish",
+                    "required": [],
+                    "flags": [],
+                    "next": null
+                }
+            ]
+        }
+    ]
+}
